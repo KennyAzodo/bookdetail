@@ -16,7 +16,8 @@ API_KEY = os.environ.get('API_KEY')
 app = Flask(__name__)
 
 # Configure the database URL (SQLite in this case)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DB_URI','sqlite:///book.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DB_URI', 'sqlite:///book.db')
+
 app.secret_key = 'Thesecret ishere'
 
 # Initialize the SQLAlchemy extension
