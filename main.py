@@ -1,6 +1,8 @@
 import json
 import re
 import os
+import traceback
+
 import requests
 from flask import Flask, render_template, request, flash, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
@@ -116,9 +118,15 @@ def signup():
                         password=hashed_password)
 
         # Add and commit the new user to the database
-        db.session.add(new_user)
-        db.session.commit()
-        login_user(new_user)
+        try:
+            db.session.add(new_user)
+            db.session.commit()
+        except Exception as e:
+            db.session.rollback()  # Rollback the transaction on error
+            flash('An error occurred during signup.', 'error')
+            print("Error occurred during signup:")
+            print(traceback.format_exc())  # Log full stack trace
+            return redirect(url_for('signup'))
         return redirect(url_for('home'))
 
     return render_template('signup.html')
