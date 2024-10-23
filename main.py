@@ -8,7 +8,7 @@ from sqlalchemy import String, Integer, select
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 
-API_KEY = "AIzaSyDN2Y2604MVk2JYd5Nkc_OzY7GjRoeWPNQ"
+API_KEY = os.environ.get('API_KEY')
 
 # Create the Flask app
 app = Flask(__name__)
