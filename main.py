@@ -122,6 +122,10 @@ def signup():
             db.session.add(new_user)
             db.session.commit()
         except Exception as e:
+            print("First Name:", first_name)
+            print("Last Name:", last_name)
+            print("Email:", email)
+            print("Password (hashed):", hashed_password)
             db.session.rollback()  # Rollback the transaction on error
             flash('An error occurred during signup.', 'error')
             print("Error occurred during signup:")
