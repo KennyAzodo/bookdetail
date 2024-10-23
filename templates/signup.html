@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <title>Book Search</title>
+    <style>
+        .flashes{
+      text-align: center;
+      list-style-type: none;
+      color: red;
+      }
+    </style>
+</head>
+<body>
+  <main>
+
+    <div class="logo" style="font-style:italic;">Kenny's Library</div>
+
+    <h1>Sign Up</h1>
+
+      {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <ul class="flashes">
+            {% for category, message in messages %}
+                <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
+
+
+
+<form class="user-data" action="/signup" method="POST">
+    <div class="names">
+        <label for="first-name">First Name:</label>
+        <input type="text" name="first_name" placeholder="First Name" id="first-name" required>
+
+        <label for="last-name">Last Name:</label>
+        <input type="text" name="last_name" placeholder="Last Name" id="last-name" required>
+    </div>
+
+    <div class="email-div">
+        <label for="email">Email:</label>
+        <input type="email" name="email" placeholder="Email" id="email" required>
+    </div>
+
+    <div class="password-div">
+        <label for="password">Password:</label>
+        <input type="password" name="password" placeholder="Password" id="password" required>
+    </div>
+
+    <div class="password-div2">
+        <label for="confirm-password">Confirm&nbsp;Password:</label>
+        <input type="password" name="confirm_password" placeholder="Confirm Password" id="confirm-password" required>
+    </div>
+
+    <button type="submit" class="signupBtn">Sign Up</button>
+
+    <p>Already have an account? <a href="/login">Log in here</a></p>
+</form>
+
+
+
+
+  </main>  
+</body>
+</html>

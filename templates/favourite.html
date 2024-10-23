@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Favourite Books</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f4f4f4; /* Light gray background */
+            color: #333; /* Dark gray text */
+        }
+
+        /* Navbar styles */
+        .navbar {
+            background-color: #4CAF50; /* Green background for navbar */
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        /* Page title */
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            margin: 50px 0;
+            color: #333; /* Dark gray text */
+        }
+
+        /* Favourite list */
+        .favourite-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center; /* Center items */
+            padding: 0 20px;
+        }
+
+        /* Each favourite book card */
+        .favourite-item {
+            background-color: white; /* White background for cards */
+            border: 1px solid #ddd; /* Light border for cards */
+            border-radius: 8px;
+            padding: 20px;
+            width: calc(33% - 20px); /* 3 cards per row */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        /* Hover effect for cards */
+        .favourite-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Book title styling */
+        .favourite-item h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #4CAF50; /* Green for book titles */
+        }
+
+        /* Book subtitle styling */
+        .favourite-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #333; /* Dark gray for subtitles */
+        }
+
+        /* Book details (authors and description) */
+        .favourite-item p {
+            font-size: 1rem;
+            color: #333; /* Dark gray text */
+            margin-bottom: 10px;
+        }
+
+        /* Message when there are no favourites */
+        .no-favourites {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #4CAF50; /* Green for no favourites message */
+            margin-top: 50px;
+        }
+
+        /* Responsive layout for medium screens */
+        @media (max-width: 1024px) {
+            .favourite-item {
+                width: calc(50% - 20px); /* 2 cards per row */
+            }
+        }
+
+        /* Responsive layout for small screens */
+        @media (max-width: 768px) {
+            .favourite-item {
+                width: 100%; /* 1 card per row */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="{{ url_for('home') }}">Home</a>
+        {% if current_user.is_authenticated %}
+            <a href="{{ url_for('logout') }}">Logout</a>
+        {% else %}
+            <a href="{{ url_for('login') }}">Login</a>
+        {% endif %}
+        <a href="{{ url_for('favourite') }}">Favourites</a>
+    </div>
+
+    <h1>Your Favourite Books</h1>
+
+    <div class="favourite-list">
+        {% for favourite in favourites %}
+            <div class="favourite-item">
+                <h2>{{ favourite.book_title }}</h2>
+                {% if favourite.book_subtitle %}
+                    <h3>{{ favourite.book_subtitle }}</h3>
+                {% endif %}
+                <p><strong>Author(s):</strong> {{ favourite.book_author }}</p>
+                <p>{{ favourite.book_description | safe }}</p>
+            </div>
+        {% else %}
+            <div class="no-favourites">
+                <p>You have no favourite books yet.</p>
+            </div>
+        {% endfor %}
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book List</title>
+    <style>
+        /* General styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        main {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 800px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4CAF50; /* Green header */
+            margin-bottom: 1.5rem;
+        }
+
+        .book-list {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .book-item {
+            background-color: #f4f4f4;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border-radius: 4px;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+        }
+        .book-item:hover {
+            text-decoration: underline; /* Underline on hover */
+            cursor: pointer;
+        }
+
+        .book-item h2 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .book-item p {
+            margin-bottom: 0.5rem;
+            color: #666; /* Slightly lighter for description */
+        }
+
+        .book-item .author {
+            font-weight: bold;
+            color: #4CAF50; /* Green for author name */
+        }
+
+        button.viewBtn {
+            background-color: #4CAF50; /* Green background */
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        button.viewBtn:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Possible book selection</h1>
+        <ul class="book-list">
+            <!-- Placeholder for dynamically loaded books -->
+            <!-- Example of a book item -->
+<!--            <li class="book-item">-->
+<!--                <h2>Book Title 1</h2>-->
+<!--                <p class="author">Author Name</p>-->
+<!--                <p>Short description of the book goes here...</p>-->
+<!--                <button class="viewBtn">View Details</button>-->
+<!--            </li>-->
+<!--            <li class="book-item">-->
+<!--                <h2>Book Title 2</h2>-->
+<!--                <p class="author">Author Name</p>-->
+<!--                <p>Short description of the book goes here...</p>-->
+<!--                <button class="viewBtn">View Details</button>-->
+            {% for book in books %}
+            <li class="book-item">
+                <a href="{{ url_for('receive', post_id=book.id) }}"> {{ book.volumeInfo.title }} </a>
+
+
+<!--                <p class="author">By: {{ book.author }}</p>-->
+<!--                <p>{{ book.description }}</p>-->
+            </li>
+            {% else %}
+            <li class="book-item">No books available.</li>
+            {% endfor %}
+            </li>
+        </ul>
+    </main>
+</body>

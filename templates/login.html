@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        /* Reset some default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full viewport height */
+        }
+
+        main {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 400px; /* Maximum width for form */
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: bold; /* Make the logo bold */
+            margin-bottom: 1rem;
+            color: #4CAF50; /* Green color for logo */
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #333; /* Darker color for the header */
+        }
+
+        .login-data {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+            font-weight: bold; /* Make labels bold */
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        input:focus {
+            border-color: #4CAF50; /* Highlight border color on focus */
+            outline: none; /* Remove outline */
+        }
+
+        button.loginBtn {
+            background-color: #4CAF50; /* Green background */
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s; /* Smooth transition */
+        }
+
+        button.loginBtn:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+
+        p {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        a {
+            color: #4CAF50; /* Green link color */
+            text-decoration: none; /* Remove underline */
+        }
+
+        a:hover {
+            text-decoration: underline; /* Underline on hover */
+        }
+
+        /* Responsive design */
+        @media (max-width: 500px) {
+            .names {
+                flex-direction: column; /* Stack first and last name inputs on small screens */
+            }
+
+            .names input {
+                width: 100%; /* Full width on small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="logo" style="font-style: italic;">
+           Kenny's Library
+        </div>
+
+        <h1>Log In</h1>
+
+        <form action="/login" method="POST" class="login-data">
+            <div class="username-div">
+                <label for="email">Username:</label>
+                <input type="text" id="email" placeholder="Username" class="username email" name="email" required>
+            </div>
+
+            <div class="login-password">
+                <label for="password">Password:</label>
+                <input type="password" id="password" placeholder="Password" class="login password" name="password" required>
+            </div>
+
+            <button type="submit" class="loginBtn">Log In</button>
+        </form>
+
+        <p>Don't have an account? <a href="{{ url_for('signup') }}">Sign up</a></p>
+    </main>
+</body>
+</html>
