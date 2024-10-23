@@ -32,7 +32,7 @@ class User(UserMixin, db.Model):
     firstname = db.Column(db.String(80), nullable=False)
     lastname = db.Column(db.String(80), nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    password = db.Column(db.String(80), nullable=False)
+    password = db.Column(db.String(255), nullable=False)
 
     # One-to-One relationship with Favourite
     favourite = db.relationship('Favourite', uselist=False, backref='user')
