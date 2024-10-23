@@ -110,7 +110,10 @@ def signup():
 
         # Hash the password and create a new user
         hashed_password = generate_password_hash(password, method='pbkdf2:sha256', salt_length=8)
-        new_user = User(firstname=first_name, lastname=last_name, email=email, password=hashed_password)
+        new_user = User(firstname=first_name,
+                        lastname=last_name,
+                        email=email,
+                        password=hashed_password)
 
         # Add and commit the new user to the database
         db.session.add(new_user)
