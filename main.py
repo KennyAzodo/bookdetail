@@ -1,5 +1,6 @@
 import json
 import re
+import os
 import requests
 from flask import Flask, render_template, request, flash, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
@@ -13,7 +14,7 @@ API_KEY = "AIzaSyDN2Y2604MVk2JYd5Nkc_OzY7GjRoeWPNQ"
 app = Flask(__name__)
 
 # Configure the database URL (SQLite in this case)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///book.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DB_URI','sqlite:///book.db')
 app.secret_key = 'Thesecret ishere'
 
 # Initialize the SQLAlchemy extension
